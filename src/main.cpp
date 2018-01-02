@@ -33,7 +33,7 @@ int main()
   uWS::Hub h;
 
   PID pid;  // steering controller
-  PID pid_t //throttle controller
+  PID pid_t; //throttle controller
   // TODO: Initialize the pid variable.
   pid.Init(0.15, 0.0, 5.0);
   pid_t.Init(0.1, 0.0, 0.5);
