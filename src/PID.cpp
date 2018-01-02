@@ -1,4 +1,6 @@
 #include "PID.h"
+#include <iostream>
+
 
 using namespace std;
 
@@ -26,6 +28,8 @@ void PID::UpdateError(double cte) {
     d_error = cte - p_error;
     p_error = cte;
     i_error += cte;
+    std::cout << "d_error: " << d_error << " p_error: " << p_error << " i_error: " << i_error << std::endl;
+
 
 }
 
