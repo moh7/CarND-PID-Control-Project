@@ -34,7 +34,7 @@ int main()
 
   PID pid;  // steering controller
   // TODO: Initialize the pid variable.
-  pid.Init(0.12, 0.0, 5.0);
+  pid.Init(0.12, 0.0, 10.0);
 
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
