@@ -1,8 +1,20 @@
-# CarND-Controls-PID
-Self-Driving Car Engineer Nanodegree Program
+# Udacity Self-Driving Car Enginer Nanodegree - PID Control Project
+
+## Instruction
+The purpose of this project was to design and implement a PID controller for a self driving car. The simulator provides cross-track error (CTE), speed and steering angle data via local websocket. The designed controller has to respond with a steering angle and throttle values to keep the car on the simulator track.
+
+## Ruberic Discussion Points
+**Describe the effect of the P, I, D component of the PID algorithm in the implementation.**
+
+The P component shows the most significant effect on the performance of the controller. The P component produces an steering angle proportional to the distance of the car from the track centerline (CTE). If the car is far from the centerline, the P component generates a large control input to return the car back to the centerline. If the car is a slightly far from the centerline, it produces a smaller control input to return the car. Large values of the P component will lead to an undesired control performance, destabilizing the car and making it oscillate harder to left and right. I started testing the controller with Kp = 2 and decreased it to 0.12 until I got an acceptable performance.
+
+The D component adds damping to the controller performance and counteracts the effect of the P component to overshoot and helps the car to make smoother turns. I initially set Kd = 0 and gradually increased its value until I obtained an acceptable performance. Increasing Kd more than 5 did not show a significant improvement in the performance of the controller.
+
+The I component compensates for the bias in the CTE which keeps the car from reaching the center line. It can be effective if there is a bias in the system such as a steering drift. However, in this particular scenario, I did not notice any improvement in the performance by adding an integrator and therefore set this parameter to zero.
+
+The final parameters that I used for the PID controller are: Kp = 0.12, Kd = 5.0 and Ki = 0.0.
 
 ---
-
 ## Dependencies
 
 * cmake >= 3.5
@@ -19,7 +31,7 @@ Self-Driving Car Engineer Nanodegree Program
   * Run either `./install-mac.sh` or `./install-ubuntu.sh`.
   * If you install from source, checkout to commit `e94b6e1`, i.e.
     ```
-    git clone https://github.com/uWebSockets/uWebSockets 
+    git clone https://github.com/uWebSockets/uWebSockets
     cd uWebSockets
     git checkout e94b6e1
     ```
@@ -30,25 +42,16 @@ There's an experimental patch for windows in this [PR](https://github.com/udacit
 
 ## Basic Build Instructions
 
+In order to run this program:
+
 1. Clone this repo.
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./pid`. 
+4. Run it: `./pid`.
+5. Run the simulator and see the performance of the car.
 
 Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
 
-## Editor Settings
-
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
-
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
-
-## Code Style
-
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
 
 ## Project Instructions and Rubric
 
@@ -58,41 +61,3 @@ cmake and make!
 More information is only accessible by people who are already enrolled in Term 2
 of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/e8235395-22dd-4b87-88e0-d108c5e5bbf4/concepts/6a4d8d42-6a04-4aa6-b284-1697c0fd6562)
 for instructions and the project rubric.
-
-## Hints!
-
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
-
-## Call for IDE Profiles Pull Requests
-
-Help your fellow students!
-
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to we ensure
-that students don't feel pressured to use one IDE or another.
-
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
-
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
-
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
-
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
-
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
