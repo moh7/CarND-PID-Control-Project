@@ -1,7 +1,7 @@
 # Udacity Self-Driving Car Enginer Nanodegree - PID Control Project
 
 ## Instruction
-The purpose of this project was to design and implement a PID controller for a self driving car. The simulator provides cross-track error (CTE), speed and steering angle data via local websocket. The designed controller has to respond with a steering angle and throttle values to keep the car on the simulator track.
+The purpose of this project was to design and implement a PID controller for a self driving car. The simulator provides cross-track error (CTE), speed and steering angle data via local websocket. The designed controller has to respond with steering angle and throttle values to keep the car on the simulator track.
 
 ## Ruberic Discussion Points
 **Describe the effect of the P, I, D component of the PID algorithm in the implementation.**
@@ -14,7 +14,7 @@ The I component compensates for the bias in the CTE which keeps the car from rea
 
 The final parameters that I used for the PID controller are: Kp = 0.12, Kd = 5.0 and Ki = 0.0.
 
-The performance the PID controller with these parameters can be seen in this [video](https://github.com/moh7/CarND-PID-Control-Project/blob/master/simulation.mov). 
+The performance the PID controller with these parameters can be seen in this [video](https://github.com/moh7/CarND-PID-Control-Project/blob/master/simulation.mov).
 
 ---
 ## Dependencies
